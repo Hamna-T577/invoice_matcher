@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% load static %}
+
+    <link rel="stylesheet" href="{% static 'matcher/upload.css' %}">
+  <title >Upload Invoices & POs</title>
+</head>
+<body>
+  <h1>Upload Invoices & Purchase Orders</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Upload Invoices (PDFs):</label><br>
+    <input type="file" name="invoices" multiple required><br><br>
+
+    <label>Upload Purchase Orders (PDFs):</label><br>
+    <input type="file" name="pos" multiple required><br><br>
+
+    <button type="submit">Match Documents</button>
+  </form>
+</body>
+</html>

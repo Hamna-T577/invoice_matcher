@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'matcher/results.css' %}">
+  <title>Results</title>
+
+  
+</head>
+<body>
+  <h1>Matching Results</h1>
+  <a href="/">⬅ Back</a>
+
+  {% for match in matches %}
+    <div class="match-card">
+      <h3>{{ match.invoice_name }} vs {{ match.po_name }}</h3>
+
+      {% if "MATCH ✅" in match.status %}
+        <p class="status success">Match is Success ✅</p>
+      {% else %}
+        <p class="status fail">Mismatch ⚠️</p>
+      {% endif %}
+
+      <ul>
+        {% for msg in match.messages %}
+          <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</body>
+</html>
